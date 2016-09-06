@@ -2,7 +2,7 @@
 
 /*
  *
- * Plugin Name: Common - Ensemble Custom Post Type
+ * Plugin Name: Common - Ensemble CPT
  * Description: Ensemble CPT Plugin
  * Author: Austin Tindle
  *
@@ -32,17 +32,18 @@ add_action('init', 'create_ensemble_type');
 // Create the custom post type and register it
 function create_ensemble_type() {
 	$args = array(
-	      'label' => 'ensemble',
+	      'label' => 'Ensembles',
 	        'public' => true,
 	        'show_ui' => true,
 	        'capability_type' => 'post',
 	        'hierarchical' => false,
 	        'rewrite' => array('slug' => 'ensemble'),
-			'menu_icon'  => 'dashicons-groups',
+			'menu_icon'  => 'dashicons-album',
 	        'query_var' => true,
 	        'supports' => array(
 	            'title',
-	            'thumbnail')
+	            'thumbnail',
+	            'editor')
 	    );
 	register_post_type( 'ensemble' , $args );
 }
