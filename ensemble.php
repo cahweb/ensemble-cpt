@@ -8,22 +8,24 @@
  *
  */
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 // Settings array. This is so I can retrieve predefined wp_editor() settings to keep the markup clean
 $settings = array (
 	'sm' => array('textarea_rows' => 3),
 	'md' => array('textarea_rows' => 6),
 );
 
-/* Custom Post Type ------------------- */
-
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 // Load our CSS
 function ensemble_load_plugin_css() {
     wp_enqueue_style( 'ensemble-plugin-style', plugin_dir_url(__FILE__) . 'css/style.css');
 }
+
+
+/* Custom Post Type ------------------- */
+
 add_action( 'admin_enqueue_scripts', 'ensemble_load_plugin_css' );
 
 // Add create function to init
@@ -60,6 +62,7 @@ function ensemble_init() {
 function ensemble_meta_required() {
 	global $post; // Get global WP post var
     $custom = get_post_custom($post->ID); // Set our custom values to an array in the global post var
+    $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
 
     // Form markup 
     include_once('views/required.php');
@@ -71,6 +74,5 @@ function save_ensemble() {
 
 	update_post_meta($post->ID, "ensemble", $_POST["ensemble"]);
 }
-
 
 ?>
