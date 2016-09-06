@@ -8,9 +8,18 @@ This project adheres to [Semantic Versioning](http://semver.org/)
 - Dashicon now is an 'album'
 - Ensemble namespaces changed from 'temp'
 
+### Added
+- Basic required form fields
+- Ensemble status (Major/Minor)
+- Type of ensemble
+- Meeting times
+
 ### Removed
 - required.php markup removed
 
+### Notes
+- Filled out basic plugin functionality
+
 ## [0.1.0] - 2016/09/06
 ### Notes
-- Initial release.
+- Initial release
