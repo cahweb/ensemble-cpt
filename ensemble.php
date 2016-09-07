@@ -7,6 +7,7 @@
  * Author: Austin Tindle
  *
  */
+// Uncomment to show errors
 
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
@@ -56,9 +57,12 @@ add_action('save_post', 'save_ensemble');
 // Add the meta boxes to our CPT page
 function ensemble_init() {
 	add_meta_box("ensemble-required-meta", "Required Information", "ensemble_meta_required", "ensemble", "normal", "high");
+	add_meta_box("ensemble-audition-meta", "How to Audition", "ensemble_meta_audition", "ensemble", "normal", "low");
+	add_meta_box("ensemble-media-meta", "Media", "ensemble_meta_media", "ensemble", "normal", "low");
 }
 
 // Meta box functions
+// Required
 function ensemble_meta_required() {
 	global $post; // Get global WP post var
     $custom = get_post_custom($post->ID); // Set our custom values to an array in the global post var
@@ -68,11 +72,38 @@ function ensemble_meta_required() {
     include_once('views/required.php');
 }
 
+// How to audition
+function ensemble_meta_audition() {
+	global $post;
+	global $settings;
+	$custom = get_post_custom($post->ID);
+
+	wp_editor($custom['audition'][0], 'audition', $settings['sm']);
+}
+
+// Media
+function ensemble_meta_media() {
+	global $post;
+	global $settings;
+	$custom = get_post_custom($post->ID);
+
+	wp_editor($custom['media'][0], 'media', $settings['sm']);
+}
+
 // Save our variables
 function save_ensemble() {
 	global $post;
 
-	update_post_meta($post->ID, "ensemble", $_POST["ensemble"]);
+	update_post_meta($post->ID, "contact_name", $_POST["contact_name"]);
+	update_post_meta($post->ID, "contact_tel", $_POST["contact_tel"]);
+	update_post_meta($post->ID, "contact_email", $_POST["contact_email"]);
+	update_post_meta($post->ID, "contact_address", $_POST["contact_address"]);
+	update_post_meta($post->ID, "start_time", $_POST["start_time"]);
+	update_post_meta($post->ID, "end_time", $_POST["end_time"]);
+	update_post_meta($post->ID, "course_number", $_POST["course_number"]);
+	update_post_meta($post->ID, "status", $_POST["status"]);
+	update_post_meta($post->ID, "type", $_POST["type"]);
+
 }
 
 ?>
