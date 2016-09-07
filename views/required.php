@@ -2,42 +2,42 @@
 /* Required */
 ?>
 
-<table>
-
 	<!-- Status (Major/Minor) -->
-	<tr>
-		<td><label>Status:</label></td>
-		<td><input type="radio" name="status" value="major" <?php if ($custom['status'][0] == 'major') echo 'checked'; ?>>Major</td>
-		<td><input type="radio" name="status" value="minor" <?php if ($custom['status'][0] == 'minor') echo 'checked'; ?>>Minor</td>
-	</tr>
+	<div>
+		<label>Status:</label>
+		<input type="radio" name="status" value="major" <?php if ($custom['status'][0] == 'major') echo 'checked'; ?>>Major
+		<input type="radio" name="status" value="minor" <?php if ($custom['status'][0] == 'minor') echo 'checked'; ?>>Minor
+	</div>
 
 	<!-- Type -->
-	<tr>
-		<td><label>Type:</label></td>
-		<td><input type="radio" name="type" value="jazz" <?php if ($custom['type'][0] == 'jazz') echo 'checked'; ?>>Jazz</td>
-		<td><input type="radio" name="type" value="choir" <?php if ($custom['type'][0] == 'choir') echo 'checked'; ?>>Choir</td>
-		<td><input type="radio" name="type" value="bands" <?php if ($custom['type'][0] == 'bands') echo 'checked'; ?>>Bands</td>
-		<td><input type="radio" name="type" value="opera" <?php if ($custom['type'][0] == 'opera') echo 'checked'; ?>>Opera</td>
-		<td><input type="radio" name="type" value="Orchestra" <?php if ($custom['type'][0] == 'orchestra') echo 'checked'; ?>>Orchestra</td>
-	</tr>
+	<div>
+		<label>Type:</label>
+		<input type="radio" name="type" value="jazz" <?php if ($custom['type'][0] == 'jazz') echo 'checked'; ?>>Jazz
+		<input type="radio" name="type" value="choir" <?php if ($custom['type'][0] == 'choir') echo 'checked'; ?>>Choir
+		<input type="radio" name="type" value="bands" <?php if ($custom['type'][0] == 'bands') echo 'checked'; ?>>Bands
+		<input type="radio" name="type" value="opera" <?php if ($custom['type'][0] == 'opera') echo 'checked'; ?>>Opera
+		<input type="radio" name="type" value="Orchestra" <?php if ($custom['type'][0] == 'orchestra') echo 'checked'; ?>>Orchestra
+	</div>
 
-	<!-- Times -->
-	<tr><td><h4>Meeting Times</h4></td></tr>
-	<tr>
-		<td><label>Days:</label></td>
+	<!-- Meeting Times -->
+
+	<div>
+		<h4>Meeting Times</h4>
+
+		<!-- Meeting Days -->
+		<label>Days:</label>
 
 		<!-- Print each day from a days array into an input -->
 		<?php foreach ($days as $day) { ?>
-			<td><input name="day" type="checkbox" value="<?php echo $day; ?>" <?php if ($custom['times'][0] == $day) echo "checked"; ?>><?php echo $day; ?></td>
+		<input name="days[]" type="checkbox" value="<?php echo $day; ?>" <?php if (in_array($custom['days'][0], $day)) echo "checked"; ?>><?php echo $day; ?>
 		<? }  ?>
 
-	</tr>
-
-	<tr>
-		<td><label>Hour:</label></td>
-		<td><input type="time" name="hour"></td>
-		<td>to</td>
-		<td><input type="time" name="hour"></td>
-	</tr>
-
-</table>
+	</div>
+	
+	<div>
+		<!-- Meeting Hours -->
+		<label>Hours:</label>
+		<input type="time" name="start_time">
+		<span>to</span>
+		<input type="time" name="end_time">
+	</div>
