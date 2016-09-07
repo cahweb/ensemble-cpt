@@ -66,7 +66,7 @@ function ensemble_init() {
 function ensemble_meta_required() {
 	global $post; // Get global WP post var
     $custom = get_post_custom($post->ID); // Set our custom values to an array in the global post var
-    $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+    $days = $custom['days'][0];
 
     // Form markup 
     include_once('views/required.php');
@@ -103,6 +103,7 @@ function save_ensemble() {
 	update_post_meta($post->ID, "course_number", $_POST["course_number"]);
 	update_post_meta($post->ID, "status", $_POST["status"]);
 	update_post_meta($post->ID, "type", $_POST["type"]);
+	update_post_meta($post->ID, "days", $_POST["days"]);
 
 }
 

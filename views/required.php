@@ -35,13 +35,21 @@
 		<label>Days:</label>
 
 		<!-- Print each day from a days array into an input -->
+		<input type="checkbox" name="days[]" value="Mon" <?php if (strpos($days, "Mon") !== false) echo "checked"?>>Mon
+		<input type="checkbox" name="days[]" value="Tue" <?php if (strpos($days, "Tue") !== false) echo "checked"?>>Tue
+		<input type="checkbox" name="days[]" value="Wed" <?php if (strpos($days, "Wed") !== false) echo "checked"?>>Wed
+		<input type="checkbox" name="days[]" value="Thu" <?php if (strpos($days, "Thu") !== false) echo "checked"?>>Thu
+		<input type="checkbox" name="days[]" value="Fri" <?php if (strpos($days, "Fri") !== false) echo "checked"?>>Fri
+		<input type="checkbox" name="days[]" value="Sat" <?php if (strpos($days, "Sat") !== false) echo "checked"?>>Sat
+		<input type="checkbox" name="days[]" value="Sun" <?php if (strpos($days, "Sun") !== false) echo "checked"?>>Sun
+		<br>
 		
 	
 		<!-- Meeting Hours -->
 		<label>Hours:</label>
-		<input type="time" name="start_time">
+		<input type="time" name="start_time" value="<?php echo $custom['start_time'][0]; ?>">
 		<span>to</span>
-		<input type="time" name="end_time">
+		<input type="time" name="end_time" value="<?php echo $custom['end_time'][0]; ?>">
 
 	</div>
 
