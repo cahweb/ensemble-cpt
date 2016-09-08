@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/)
 - Basic required form fields
 -   Ensemble status (Major/Minor)
 -   Type of ensemble
--   Meeting times (including cool meeting times checkboxes that now ~almost work~ work)
+-   Meeting times (including cool meeting times checkboxes that now ~~almost work~~ work)
 
 ### Removed
 - required.php markup removed
