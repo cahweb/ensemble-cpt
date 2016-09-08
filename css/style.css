@@ -1,11 +1,11 @@
-div {
+.inner-meta {
 	margin: 10px 0;
 }
 
-div input, label, span {
+.inner-meta input, label, span {
 	margin: 5px 10px 5px 0;
 }
 
-div input[type='text'] {
+.inner-meta input[type='text'] {
 	min-width: 400px;
 }

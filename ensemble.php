@@ -1,5 +1,4 @@
 <?php
-
 /*
  *
  * Plugin Name: Common - Ensemble CPT
@@ -10,10 +9,12 @@
  */
 // Uncomment to show errors
 
-
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
+
+// Require our templater
+require_once('templater.php');
 
 // Settings array. This is so I can retrieve predefined wp_editor() settings to keep the markup clean
 $settings = array (
@@ -123,7 +124,6 @@ function save_ensemble() {
 	update_post_meta($post->ID, "days", $_POST["days"]);
 	update_post_meta($post->ID, "audition", $_POST["audition"]);
 	update_post_meta($post->ID, "media", $_POST["media"]);
-
 }
 
 // Keep the markup clean, write a display function for the checkboxes
@@ -145,6 +145,3 @@ function ensemble_display_checkboxes() {
 		<?php }
 	}
 }
-
-
-?>

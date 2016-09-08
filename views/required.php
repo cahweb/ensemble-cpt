@@ -2,7 +2,7 @@
 /* Required */
 ?>	
 	<!-- Contact information -->
-	<div>
+	<div class="inner-meta">
 		<h4>Contact</h4>
 
 		<!-- Name -->
@@ -28,14 +28,14 @@
 	</div>
 
 	<!-- Meeting Times -->
-	<div>
+	<div class="inner-meta">
 		<h4>Meeting Times</h4>
 
 		<!-- Meeting Days -->
 		<label>Days:</label>
 
 		<!-- Print each day from a days array into an input -->
-		<?php ensemble_display_checkboxes(); ?>
+		<?php ensemble_display_checkboxes() ?>
 		<br>
 		
 	
@@ -48,7 +48,7 @@
 	</div>
 
 	<!-- Other info -->
-	<div>
+	<div class="inner-meta">
 		<h4>Other</h4>
 
 		<!-- Course Number -->
