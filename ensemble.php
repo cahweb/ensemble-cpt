@@ -63,6 +63,8 @@ function ensemble_init() {
 
 // Meta box functions
 // Required
+/* in future plugins, it would be better to declare all custom variables in this file, rather than
+ * referencing them in the view */
 function ensemble_meta_required() {
 	global $post; // Get global WP post var
     $custom = get_post_custom($post->ID); // Set our custom values to an array in the global post var
