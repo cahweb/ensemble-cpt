@@ -5,6 +5,7 @@
  * Plugin Name: Common - Ensemble CPT
  * Description: Ensemble CPT Plugin
  * Author: Austin Tindle
+ * Version: 0.1.1
  *
  */
 // Uncomment to show errors
@@ -120,6 +121,8 @@ function save_ensemble() {
 	update_post_meta($post->ID, "status", $_POST["status"]);
 	update_post_meta($post->ID, "type", $_POST["type"]);
 	update_post_meta($post->ID, "days", $_POST["days"]);
+	update_post_meta($post->ID, "audition", $_POST["audition"]);
+	update_post_meta($post->ID, "media", $_POST["media"]);
 
 }
 
