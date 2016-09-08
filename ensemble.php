@@ -9,6 +9,7 @@
  */
 // Uncomment to show errors
 
+
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
@@ -26,6 +27,7 @@ function ensemble_load_plugin_css() {
 
 
 /* Custom Post Type ------------------- */
+
 
 add_action( 'admin_enqueue_scripts', 'ensemble_load_plugin_css' );
 
@@ -63,12 +65,24 @@ function ensemble_init() {
 
 // Meta box functions
 // Required
+
 /* in future plugins, it would be better to declare all custom variables in this file, rather than
  * referencing them in the view */
+
+/* I ran into a problem trying to properly validate the checkbox values from required.php so that
+ * more than one day can be selected for a meeting time. The way the system of assigning vars
+ * to the $custom array stores other arrays seems to be the wrong way to handle custom metavalues.
+ * In the next plugin I will overhaul the cpt-template to get rid of doing it this way,
+ * but for now it will be a mix of both methods to get this plugin to work.
+ *
+ * EDIT: The problem was that update_post_meta serializes the data it seems, so it needed to be
+ * unserialized
+ */
+
 function ensemble_meta_required() {
 	global $post; // Get global WP post var
-    $custom = get_post_custom($post->ID); // Set our custom values to an array in the global post var
-    $days = $custom['days'][0];
+    $custom = get_post_meta($post->ID); // Set our custom values to an array in the global post var
+    $days = unserialize($custom['days']);
 
     // Form markup 
     include_once('views/required.php');
@@ -108,5 +122,26 @@ function save_ensemble() {
 	update_post_meta($post->ID, "days", $_POST["days"]);
 
 }
+
+// Keep the markup clean, write a display function for the checkboxes
+// This took me almost 2 days to figure out
+function ensemble_display_checkboxes() {
+	global $post;
+	$custom = get_post_custom($post->ID);
+
+	$days = unserialize($custom['days'][0]); // Actually it was this line specifically
+	$dayNames = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+
+	foreach ($dayNames as $name) {
+		// If the name of the day is stored in our custom metavalues, display the checkbox as checked
+		// Theres a better way to do all of this, but I haven't learned it yet
+		if (in_array($name, $days)) { ?>
+			<input type="checkbox" name="days[]" value="<?php echo $name . '"' . 'checked>' . $name ?>
+		<?php } else { ?>
+			<input type="checkbox" name="days[]" value="<?php echo $name . '">' . $name ?>
+		<?php }
+	}
+}
+
 
 ?>
