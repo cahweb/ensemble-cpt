@@ -13,8 +13,6 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-// Require our templater
-require_once('templater.php');
 
 // Settings array. This is so I can retrieve predefined wp_editor() settings to keep the markup clean
 $settings = array (
