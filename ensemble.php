@@ -9,9 +9,9 @@
  */
 // Uncomment to show errors
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ALL);
 
 
 // Settings array. This is so I can retrieve predefined wp_editor() settings to keep the markup clean
@@ -59,6 +59,7 @@ add_action('save_post', 'save_ensemble');
 // Add the meta boxes to our CPT page
 function ensemble_init() {
 	add_meta_box("ensemble-required-meta", "Required Information", "ensemble_meta_required", "ensemble", "normal", "high");
+	add_meta_box("ensemble-general-meta", "General Information", "ensemble_meta_general", "ensemble", "normal", "low");
 	add_meta_box("ensemble-audition-meta", "How to Audition", "ensemble_meta_audition", "ensemble", "normal", "low");
 	add_meta_box("ensemble-media-meta", "Media", "ensemble_meta_media", "ensemble", "normal", "low");
 }
@@ -88,6 +89,15 @@ function ensemble_meta_required() {
     include_once('views/required.php');
 }
 
+// General Information
+function ensemble_meta_general() {
+	global $post;
+	global $settings;
+	$custom = get_post_custom($post->ID);
+
+	include_once('views/general.php');
+}
+
 // How to audition
 function ensemble_meta_audition() {
 	global $post;
@@ -106,7 +116,7 @@ function ensemble_meta_media() {
 	wp_editor($custom['media'][0], 'media', $settings['sm']);
 }
 
-// Save our variables
+// Save our variables 
 function save_ensemble() {
 	global $post;
 
