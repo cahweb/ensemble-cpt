@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/)
 
 ## [Unreleased]
+### Changed
+- Moved meeting times to a new 'General info' metabox
 
 ## [0.1.1] - 2016/09/08
 ### Changed
